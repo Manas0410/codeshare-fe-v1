@@ -3,7 +3,6 @@ import { useUser } from "../Hooks/auth/useUser";
 
 const Protectedroute = () => {
   const { user } = useUser();
-  console.log(user, "usr");
   if (user === null) {
     return <Navigate to="/login" />;
   }

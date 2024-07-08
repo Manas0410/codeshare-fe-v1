@@ -17,7 +17,29 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../Components/ui/popover";
-import { Languages } from "../constants/languages";
+
+const frameworks = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+];
 
 export function LanguageSelector() {
   const [open, setOpen] = React.useState(false);
@@ -33,7 +55,7 @@ export function LanguageSelector() {
           className="w-[200px] justify-between"
         >
           {value
-            ? Languages.find((framework) => framework.value === value)?.label
+            ? frameworks.find((framework) => framework.value === value)?.label
             : "Select framework..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -43,12 +65,13 @@ export function LanguageSelector() {
           <CommandInput placeholder="Search framework..." />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
-            {Languages.map((framework) => (
-              <CommandItem
+            {frameworks.map((framework) => (
+              <div
+                className="relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
                 key={framework.value}
-                value={framework.value}
-                onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
+                // value={framework.value}
+                onClick={() => {
+                  setValue(framework.value);
                   setOpen(false);
                 }}
               >
@@ -59,7 +82,7 @@ export function LanguageSelector() {
                   )}
                 />
                 {framework.label}
-              </CommandItem>
+              </div>
             ))}
           </CommandGroup>
         </Command>

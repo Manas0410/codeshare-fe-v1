@@ -75,7 +75,6 @@ export const Languages = [
   { label: "Twig", value: "twig" },
   { label: "VB", value: "vb" },
   { label: "WebGPU Shader Language", value: "wgsl" },
-  { label: "XML", value: "xml" },
   { label: "YAML", value: "yaml" },
   { label: "JSON", value: "json" },
 ];
