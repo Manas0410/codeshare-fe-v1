@@ -1,6 +1,6 @@
 import { AlignJustify } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "../Components/ui/sheet";
-import { LanguageSelector } from "../common/LanguageSelector";
+import LanguageSelector from "../common/LanguageSelector";
 
 const NavBar = () => {
   return (
