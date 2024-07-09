@@ -13,7 +13,6 @@ const NavBar = () => {
           <AlignJustify color="#ffffff" />
         </SheetTrigger>
         <SheetContent className=" border-0">
-          {" "}
           cutuuu baby <LanguageSelector />
         </SheetContent>
       </Sheet>
