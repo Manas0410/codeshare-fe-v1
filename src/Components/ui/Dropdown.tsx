@@ -54,6 +54,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
       <div className="control">
         <div className="selected-value">
           <input
+            tabIndex={isOpen ? 0 : -1}
             ref={inputRef}
             type="text"
             value={getDisplayValue()}
