@@ -3,6 +3,7 @@ import CutomEditor from "../Components/Editor";
 
 const CodeEditorPage = () => {
   const { unicode } = useParams();
+  console.log(unicode);
   return (
     <section>
       <CutomEditor />
@@ -11,4 +12,3 @@ const CodeEditorPage = () => {
 };
 
 export default CodeEditorPage;
-// http://3.110.223.149:3000/
