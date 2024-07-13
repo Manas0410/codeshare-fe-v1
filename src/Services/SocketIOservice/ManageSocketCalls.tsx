@@ -10,11 +10,20 @@ import {
 } from "../ReduxService/Reducers/CodeDataReducer";
 import { ReactNode, useEffect } from "react";
 
-// this block of code is to get the data from server //
+const BASE_API = window.location.href.startsWith("http://localhost:5173")
+  ? "http://localhost:3000"
+  : "https://manascodeshare.onrender.com";
+
+import io from "socket.io-client";
+
+const socket = io(BASE_API);
+
 const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
   const { unicode } = useParams();
-  const fetchEditorInfo = async () => {
+
+  // this block of code is to get the data from server //
+  const getDataFromServer = async () => {
     const res = await callAPI(`/get?urlCode=${unicode}`, "get");
 
     if ((res as AxiosResponse)?.status !== 200) {
@@ -28,18 +37,29 @@ const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    fetchEditorInfo();
-  }, []);
+    socket.on("receive_message", () => {
+      getDataFromServer();
+    });
+  }, [socket]);
   // this block of code is to get the data from server //
 
   // this block of code is to send the data to server //
   const codeVal = useSelector((state: any) => state.codeEditorSlice.code);
 
+  const sendDataToServer = async () => {
+    await callAPI(`/update`, "put", {
+      sharedData: codeVal,
+      urlCode: unicode,
+      languageName: "plainText",
+      isEditable: true,
+    });
+    socket.emit("send_message", { message: "Hello from client" });
+  };
+
   useEffect(() => {
-    if (codeVal && unicode) {
-      callAPI(`/update?urlCode=${unicode}`, "put", { sharedData: codeVal });
-    }
-  }, [codeVal, unicode]);
+    if (codeVal && unicode) sendDataToServer();
+    socket.emit("send_message", { message: "Hello from client" });
+  }, [codeVal]);
 
   // this block of code is to send the data to server //
 
