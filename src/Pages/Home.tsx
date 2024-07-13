@@ -2,28 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../Hooks/auth/useUser";
 import Toggle from "../common/Toggle";
 import { generateUniqueCode } from "../utils/uniqueCodeGenerator";
-import useAPIcall from "../Hooks/useAPIcall";
+import { callAPI } from "../utils/callAPI";
+import { AxiosResponse } from "axios";
 
 const Home = () => {
   const navigate = useNavigate();
   const { user } = useUser();
-  console.log(user?.uid);
 
-  const moveToeditor = () => {
+  const moveToeditor = async () => {
     const unicode = generateUniqueCode(6);
-    const { IsLoading, Response, IsSuccessfullyFetched } = useAPIcall(
-      "/post",
-      "post",
-      {
-        urlCode: unicode,
-        sharedData: "",
-        languageName: "plaintext",
-        isEditable: false,
-        userId: "asd",
-      }
-    );
-
-    navigate(`/editor/${unicode}`);
+    const res = await callAPI("/post", "post", {
+      urlCode: unicode,
+      sharedData: "asd",
+      languageName: "plaintext",
+      isEditable: false,
+      userId: user?.uid,
+    });
+    if ((res as AxiosResponse)?.status === 201) navigate(`/editor/${unicode}`);
+    // handle api error here
   };
 
   return (

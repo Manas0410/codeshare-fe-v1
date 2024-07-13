@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { toggleEditing } from "../ReduxService/Reducers/CodeDataReducer";
+import { toggleEditing } from "../Services/ReduxService/Reducers/CodeDataReducer";
 
 const Toggle = () => {
   const dispatch = useDispatch();

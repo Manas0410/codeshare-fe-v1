@@ -1,6 +1,6 @@
 import Editor from "@monaco-editor/react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCode } from "../ReduxService/Reducers/CodeDataReducer";
+import { updateCode } from "../Services/ReduxService/Reducers/CodeDataReducer";
 
 let timer: any = null;
 
@@ -14,7 +14,7 @@ const CutomEditor = () => {
     }
     timer = setTimeout(() => dispatch(updateCode(value)), 500);
   }
-  console.log(codeVal);
+
   return (
     <Editor
       height="97vh"
@@ -23,7 +23,7 @@ const CutomEditor = () => {
       value={codeVal}
       // @ts-ignore
       onChange={handleEditorChange}
-      options={{ readOnly: true }}
+      // options={{ readOnly: true }}
     />
   );
 };

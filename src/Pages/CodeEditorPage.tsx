@@ -1,14 +1,16 @@
-import { useParams } from "react-router-dom";
 import CutomEditor from "../Components/Editor";
+import ManageSocketCalls from "../Services/SocketIOservice/ManageSocketCalls";
 
 const CodeEditorPage = () => {
-  const { unicode } = useParams();
-  console.log(unicode);
   return (
     <section>
-      <CutomEditor />
+      <ManageSocketCalls>
+        <CutomEditor />
+      </ManageSocketCalls>
     </section>
   );
 };
 
 export default CodeEditorPage;
+
+// jese hi is page p aay get data
