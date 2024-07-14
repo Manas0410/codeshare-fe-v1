@@ -1,5 +1,6 @@
-import { BASE_API } from "../Config/api";
+// import { BASE_API } from "../Config/api";
 import axios from "axios";
+const BASE_API = "http://localhost:3000/code";
 
 export const callAPI = async (
   url: string,
