@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SignIn, SignUp } from "../Components/LoginForms";
 
 const Login = () => {

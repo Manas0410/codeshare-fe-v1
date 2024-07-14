@@ -8,7 +8,7 @@ const CutomEditor = () => {
   const dispatch = useDispatch();
   const codeVal = useSelector((state: any) => state.codeEditorSlice.code);
 
-  function handleEditorChange(value: string, event: any) {
+  function handleEditorChange(value: string) {
     if (timer) {
       clearTimeout(timer);
     }
@@ -21,9 +21,7 @@ const CutomEditor = () => {
       theme="vs-dark"
       defaultLanguage="javascript"
       value={codeVal}
-      // @ts-ignore
-      onChange={handleEditorChange}
-      // options={{ readOnly: true }}
+      onChange={(value) => handleEditorChange(value || "")}
     />
   );
 };

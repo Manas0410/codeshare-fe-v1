@@ -10,9 +10,9 @@ import {
 } from "../ReduxService/Reducers/CodeDataReducer";
 import { ReactNode, useEffect } from "react";
 
-const BASE_API = window.location.href.startsWith("http://localhost:5173")
-  ? "http://localhost:3000"
-  : "https://manascodeshare.onrender.com";
+// const BASE_API = window.location.href.startsWith("http://localhost:5173")
+//   ? "http://localhost:3000"
+//   : "https://manascodeshare.onrender.com";
 
 import io from "socket.io-client";
 
