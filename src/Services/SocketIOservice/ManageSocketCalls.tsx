@@ -40,7 +40,12 @@ const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
     socket.on("receive_message", () => {
       getDataFromServer();
     });
-  }, [socket]);
+
+    return () => {
+      console.log("Cleaning up receive_message listener");
+      socket.off("receive_message", getDataFromServer);
+    };
+  }, []);
   // this block of code is to get the data from server //
 
   // this block of code is to send the data to server //

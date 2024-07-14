@@ -7,11 +7,9 @@ import { store } from "./Services/ReduxService/Store/Store.ts";
 import { UserContextProvider } from "./Hooks/auth/useUser.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <UserContextProvider>
-        <App />
-      </UserContextProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <UserContextProvider>
+      <App />
+    </UserContextProvider>
+  </Provider>
 );
