@@ -9,14 +9,13 @@ import {
   updateCode,
 } from "../ReduxService/Reducers/CodeDataReducer";
 import { ReactNode, useEffect } from "react";
+import { io } from "socket.io-client";
 
 // const BASE_API = window.location.href.startsWith("http://localhost:5173")
 //   ? "http://localhost:3000"
 //   : "https://manascodeshare.onrender.com";
 
-import io from "socket.io-client";
-
-const socket = io("http://localhost:3000");
+export const socket = io("http://localhost:3000");
 
 const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
@@ -38,38 +37,36 @@ const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
 
   // initial data load
   useEffect(() => {
-    getDataFromServer();
+    if (unicode) getDataFromServer();
   }, []);
 
   useEffect(() => {
-    socket.on("receive_message", () => {
-      getDataFromServer();
-    });
+    socket.on("receive_message", getDataFromServer);
 
     return () => {
       console.log("Cleaning up receive_message listener");
       socket.off("receive_message", getDataFromServer);
     };
-  }, []);
+  }, [unicode]);
   // this block of code is to get the data from server //
 
   // this block of code is to send the data to server //
-  const codeVal = useSelector((state: any) => state.codeEditorSlice.code);
+  //   const codeVal = useSelector((state: any) => state.codeEditorSlice.code);
 
-  const sendDataToServer = async () => {
-    await callAPI(`/update`, "put", {
-      sharedData: codeVal,
-      urlCode: unicode,
-      languageName: "plainText",
-      isEditable: true,
-    });
-    socket.emit("send_message", { message: "Hello from client" });
-  };
+  //   const sendDataToServer = async () => {
+  //     await callAPI(`/update`, "put", {
+  //       sharedData: codeVal,
+  //       urlCode: unicode,
+  //       languageName: "plainText",
+  //       isEditable: true,
+  //     });
+  //     socket.emit("send_message", { message: "Hello from client" });
+  //   };
 
-  useEffect(() => {
-    if (codeVal && unicode) sendDataToServer();
-    socket.emit("send_message", { message: "Hello from client" });
-  }, [codeVal]);
+  //   useEffect(() => {
+  //     if (codeVal && unicode) sendDataToServer();
+  //     socket.emit("send_message", { message: "Hello from client" });
+  //   }, [codeVal]);
 
   // this block of code is to send the data to server //
 
