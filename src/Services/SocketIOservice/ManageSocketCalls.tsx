@@ -15,7 +15,7 @@ import { io } from "socket.io-client";
 //   ? "http://localhost:3000"
 //   : "https://manascodeshare.onrender.com";
 
-export const socket = io("http://localhost:3000");
+export const socket = io("http://3.110.223.149:3000");
 
 const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
