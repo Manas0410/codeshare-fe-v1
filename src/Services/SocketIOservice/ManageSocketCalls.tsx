@@ -36,6 +36,11 @@ const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
     dispatch(setEditorLanguage(data?.languageName));
   };
 
+  // initial data load
+  useEffect(() => {
+    getDataFromServer();
+  }, []);
+
   useEffect(() => {
     socket.on("receive_message", () => {
       getDataFromServer();
