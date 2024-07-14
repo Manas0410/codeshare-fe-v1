@@ -12,12 +12,10 @@ const CutomEditor = () => {
   const codeVal = useSelector((state: any) => state.codeEditorSlice.code);
   const { unicode } = useParams();
 
-  const sendDataToServer = async (codeVal: string) => {
+  const sendCodeDataToServer = async (codeVal: string) => {
     await callAPI(`/update`, "put", {
       sharedData: codeVal,
       urlCode: unicode,
-      languageName: "plainText",
-      isEditable: true,
     });
     socket.emit("send_message", { message: "Hello from client" });
   };
@@ -28,7 +26,7 @@ const CutomEditor = () => {
     }
     timer = setTimeout(() => {
       dispatch(updateCode(value));
-      sendDataToServer(value);
+      sendCodeDataToServer(value);
     }, 500);
   }
 
@@ -36,7 +34,7 @@ const CutomEditor = () => {
     <Editor
       height="97vh"
       theme="vs-dark"
-      defaultLanguage="javascript"
+      defaultLanguage="JavaScript"
       value={codeVal}
       onChange={(value) => handleEditorChange(value || "")}
     />

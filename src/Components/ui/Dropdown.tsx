@@ -33,7 +33,7 @@ const SearchableDropdown: React.FC<SearchableDropdownProps> = ({
 
   const selectOption = (option: Option) => {
     setQuery("");
-    handleChange(option.label);
+    handleChange(option.value);
     setIsOpen(false);
   };
 

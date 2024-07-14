@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../Hooks/auth/useUser";
-import Toggle from "../common/Toggle";
 import { generateUniqueCode } from "../utils/uniqueCodeGenerator";
 import { callAPI } from "../utils/callAPI";
 import { AxiosResponse } from "axios";
@@ -24,7 +23,7 @@ const Home = () => {
 
   return (
     <div>
-      home page {user?.displayName} <Toggle />
+      home page {user?.displayName}
       <button className="" onClick={moveToeditor}>
         {" "}
         Editor
