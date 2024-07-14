@@ -16,7 +16,7 @@ const BASE_API = window.location.href.startsWith("http://localhost:5173")
 
 import io from "socket.io-client";
 
-const socket = io(BASE_API);
+const socket = io("http://localhost:3000");
 
 const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
