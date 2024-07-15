@@ -10,6 +10,13 @@ let timer: any = null;
 const CutomEditor = () => {
   const dispatch = useDispatch();
   const codeVal = useSelector((state: any) => state.codeEditorSlice.code);
+  const isEdittingEnabled = useSelector(
+    (state: any) => state.codeEditorSlice.isEdittingEnabled
+  );
+  const codeLanguage = useSelector(
+    (state: any) => state.codeEditorSlice.editorLanguage
+  );
+
   const { unicode } = useParams();
 
   const sendCodeDataToServer = async (codeVal: string) => {
@@ -34,9 +41,12 @@ const CutomEditor = () => {
     <Editor
       height="97vh"
       theme="vs-dark"
-      defaultLanguage="JavaScript"
+      language={codeLanguage}
       value={codeVal}
       onChange={(value) => handleEditorChange(value || "")}
+      options={{
+        readOnly: !isEdittingEnabled,
+      }}
     />
   );
 };

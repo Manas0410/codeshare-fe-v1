@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import SearchableDropdown from "../Components/ui/Dropdown";
 import { Languages } from "../constants/languages";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { setEditorLanguage } from "../Services/ReduxService/Reducers/CodeDataReducer";
 import { useDispatch } from "react-redux";
+import SearchableDropdown from "./ui/Dropdown";
 
 const LanguageSelector: React.FC = () => {
   const { unicode } = useParams();

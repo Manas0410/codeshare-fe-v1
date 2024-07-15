@@ -1,6 +1,6 @@
-// import { BASE_API } from "../Config/api";
+import { BASE_API } from "../Config/api";
 import axios from "axios";
-const BASE_API = "http://3.110.223.149:3000/code";
+// const BASE_API = "http://3.110.223.149:3000/code";
 
 export const callAPI = async (
   url: string,

@@ -1,4 +1,4 @@
-import CutomEditor from "../Components/Editor";
+import { CutomEditor } from "..";
 import ManageSocketCalls from "../Services/SocketIOservice/ManageSocketCalls";
 
 const CodeEditorPage = () => {

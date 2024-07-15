@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleEditing } from "../Services/ReduxService/Reducers/CodeDataReducer";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,10 @@ import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 const Toggle = () => {
   const dispatch = useDispatch();
   const { unicode } = useParams();
+
+  const isEdittingEnable = useSelector(
+    (state: any) => state.codeEditorSlice.isEditingEnabled
+  );
 
   const sendEditEnableDataToServer = async (isEditable: boolean) => {
     await callAPI(`/update`, "put", {
@@ -28,6 +32,7 @@ const Toggle = () => {
           className="checkbox"
           type="checkbox"
           onChange={toggleChange}
+          checked={isEdittingEnable}
           // disabled={true}
         />
         <div className="knobs"></div>

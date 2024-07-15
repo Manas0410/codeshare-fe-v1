@@ -1,16 +1,12 @@
-import CodeEditorPage from "./Pages/CodeEditorPage";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
 import Protectedroute from "./common/Protectedroute";
 import { useUser } from "./Hooks/auth/useUser";
-import Loader from "./common/Loader";
-import Layout from "./common/Layout";
+import { CodeEditorPage, Home, Layout, Loader, Login } from ".";
 
 const App = () => {
   const { user, Loading } = useUser();
