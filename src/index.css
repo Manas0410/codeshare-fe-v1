@@ -163,8 +163,6 @@
 .toggle-button-cover {
   display: table-cell;
   position: relative;
-  width: 200px;
-  height: 140px;
   box-sizing: border-box;
 }
 
@@ -201,8 +199,8 @@
 .button {
   position: relative;
   top: 50%;
-  width: 74px;
-  height: 36px;
+  width: 72px;
+  height: 32px;
   margin: -20px auto 0 auto;
   overflow: hidden;
 }
@@ -239,14 +237,14 @@
   position: absolute;
   top: 4px;
   left: 4px;
-  width: 27px;
-  height: 27px;
+  width: 24px;
+  height: 24px;
   color: #fff;
   font-size: 10px;
   font-weight: bold;
   text-align: center;
   line-height: 1;
-  padding: 9px 4px;
+  padding: 7px 2px;
   background-color: #f44336;
   border-radius: 50%;
   transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);

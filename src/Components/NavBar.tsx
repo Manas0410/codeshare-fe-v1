@@ -4,17 +4,24 @@ import { LanguageSelector, Toggle } from "..";
 
 const NavBar = () => {
   return (
-    <section className="flex justify-between h-[7vh] w-full bg-black px-8 items-center">
+    <section className="flex justify-between h-[60px] w-full bg-dark-2 px-8 items-center">
       <div className="">
         <div className="name text-white">SMxShare</div>
-        <Toggle />
       </div>
       <Sheet>
         <SheetTrigger>
           <AlignJustify color="#ffffff" />
         </SheetTrigger>
-        <SheetContent className=" border-0">
-          cutuuu baby <LanguageSelector />
+        <SheetContent className="bg-dark-2 border-0">
+          <p className="text-white text-xl">Editting Tools</p>
+          <div className="flex w-full justify-start gap-6 items-center  h-max mt-16 mb-6">
+            <div className="text-white mb-5 text-xl ">Allow Editting :</div>
+            <Toggle />
+          </div>
+          <div>
+            <div className="text-white mb-5 text-xl">Select Language :</div>
+            <LanguageSelector />
+          </div>
         </SheetContent>
       </Sheet>
     </section>

@@ -39,7 +39,7 @@ const CutomEditor = () => {
 
   return (
     <Editor
-      height="97vh"
+      height="100vh"
       theme="vs-dark"
       language={codeLanguage}
       value={codeVal}

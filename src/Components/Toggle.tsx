@@ -24,7 +24,6 @@ const Toggle = () => {
     await sendEditEnableDataToServer(e.target.checked);
     dispatch(toggleEditing(e.target.checked));
   };
-
   return (
     <div className="toggle-button-cover">
       <div id="button-3" className="button r">
