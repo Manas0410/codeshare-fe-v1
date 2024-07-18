@@ -14,6 +14,7 @@ const Toggle = loadable(() => import("./Components/Toggle"));
 const LanguageSelector = loadable(
   () => import("./Components/LanguageSelector")
 );
+const Button = loadable(() => import("./Components/ui/Button"));
 
 export {
   Home,
@@ -25,4 +26,5 @@ export {
   NavBar,
   Toggle,
   LanguageSelector,
+  Button,
 };

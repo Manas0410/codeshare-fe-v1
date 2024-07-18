@@ -4,6 +4,7 @@ import { generateUniqueCode } from "../utils/uniqueCodeGenerator";
 import { callAPI } from "../utils/callAPI";
 import { AxiosResponse } from "axios";
 import { BoxesCore } from "../Components/ui/BackGroundBoxes";
+import { Button } from "..";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,13 +24,15 @@ const Home = () => {
   };
 
   return (
-    <section>
-      <h1 className="text-white z-[1000]">Code Share</h1>
-
-      <button className="" onClick={moveToeditor}>
-        {" "}
-        Editor
-      </button>
+    <section className="w-full h-full ">
+      <div className=" absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-50">
+        <h1 className="text-white text-9xl z-20 font-semibold tracking-wide">
+          Code Share
+        </h1>
+        <div className="mx-auto w-max mb-10">
+          <Button onclick={moveToeditor} />
+        </div>
+      </div>
       <BoxesCore />
     </section>
   );

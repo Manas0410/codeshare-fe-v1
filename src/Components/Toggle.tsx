@@ -3,6 +3,7 @@ import { toggleEditing } from "../Services/ReduxService/Reducers/CodeDataReducer
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
+import { useUser } from "../Hooks/auth/useUser";
 
 const Toggle = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,9 @@ const Toggle = () => {
 
   const isEdittingEnable = useSelector(
     (state: any) => state.codeEditorSlice.isEditingEnabled
+  );
+  const userIdOfMaker = useSelector(
+    (state: any) => state.codeEditorSlice.userIdOfMaker
   );
 
   const sendEditEnableDataToServer = async (isEditable: boolean) => {
@@ -24,6 +28,7 @@ const Toggle = () => {
     await sendEditEnableDataToServer(e.target.checked);
     dispatch(toggleEditing(e.target.checked));
   };
+  const { user } = useUser();
   return (
     <div className="toggle-button-cover">
       <div id="button-3" className="button r">
@@ -32,7 +37,7 @@ const Toggle = () => {
           type="checkbox"
           onChange={toggleChange}
           checked={isEdittingEnable}
-          // disabled={true}
+          disabled={user?.uid !== userIdOfMaker}
         />
         <div className="knobs"></div>
         <div className="layer"></div>
