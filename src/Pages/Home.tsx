@@ -3,6 +3,7 @@ import { useUser } from "../Hooks/auth/useUser";
 import { generateUniqueCode } from "../utils/uniqueCodeGenerator";
 import { callAPI } from "../utils/callAPI";
 import { AxiosResponse } from "axios";
+import { BoxesCore } from "../Components/ui/BackGroundBoxes";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,13 +23,15 @@ const Home = () => {
   };
 
   return (
-    <div>
-      home page {user?.displayName}
+    <section>
+      <h1 className="text-white z-[1000]">Code Share</h1>
+
       <button className="" onClick={moveToeditor}>
         {" "}
         Editor
       </button>
-    </div>
+      <BoxesCore />
+    </section>
   );
 };
 

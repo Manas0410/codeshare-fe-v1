@@ -3,7 +3,7 @@ import { NavBar } from "..";
 
 const Layout = () => {
   return (
-    <section className="h-screen w-full relative">
+    <section className="h-screen w-full relative overflow-hidden  bg-slate-900 ">
       <NavBar />
       <Outlet />
       <a href="" target="_blank" className="absolute bottom-4 right-4">
