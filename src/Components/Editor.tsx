@@ -45,7 +45,7 @@ const CutomEditor = () => {
       value={codeVal}
       onChange={(value) => handleEditorChange(value || "")}
       options={{
-        readOnly: !isEdittingEnabled,
+        readOnly: isEdittingEnabled,
       }}
     />
   );

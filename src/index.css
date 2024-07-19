@@ -344,6 +344,7 @@
   color: #333;
 }
 
+/* form */
 form {
   width: 400px;
   background-color: rgba(255, 255, 255, 0.061) !important;
@@ -356,6 +357,7 @@ form {
   padding: 78px 35px !important;
 }
 
+/* home bg pattern */
 .pattern-container {
   --color: rgba(114, 114, 114, 0.3);
   background-color: #191a1a;
@@ -384,4 +386,53 @@ form {
       transparent
     );
   background-size: 55px 55px;
+}
+
+/* tooltip */
+
+.tooltip-container {
+  position: relative;
+  background: var(--background-tooltip-container);
+  cursor: pointer;
+  transition: all 0.2s;
+  width: max-content;
+  height: max-content;
+  border-radius: 6px;
+  font-size: 17px;
+}
+
+.tooltip {
+  --background-tooltip: #4486e2; /* Default background color for tooltip */
+  position: absolute;
+  top: -59px; /* Adjusted top position */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5em;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  background: var(--background-tooltip);
+  color: white; /* Text color */
+  border-radius: 5px;
+  width: 210px;
+  height: 30px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.tooltip::before {
+  position: absolute;
+  content: "";
+  height: 0.9em;
+  width: 0.9em;
+  bottom: -0.2em;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  background: var(--background-tooltip);
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }

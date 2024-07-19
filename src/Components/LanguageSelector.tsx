@@ -4,12 +4,16 @@ import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { setEditorLanguage } from "../Services/ReduxService/Reducers/CodeDataReducer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchableDropdown from "./ui/Dropdown";
 
 const LanguageSelector: React.FC = () => {
   const { unicode } = useParams();
   const dispatch = useDispatch();
+
+  const language = useSelector(
+    (state: any) => state.codeEditorSlice.editorLanguage
+  );
 
   const [value, setValue] = useState<string | null>(null);
 
@@ -24,14 +28,13 @@ const LanguageSelector: React.FC = () => {
   const handleChange = async (value: string) => {
     await sendLanguageDataToServer(value);
     dispatch(setEditorLanguage(value));
-    setValue(value);
   };
 
   return (
     <div>
       <SearchableDropdown
         options={Languages}
-        selectedVal={value}
+        selectedVal={language}
         handleChange={(val) => handleChange(val || "")}
       />
     </div>

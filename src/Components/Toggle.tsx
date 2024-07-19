@@ -4,13 +4,14 @@ import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { useUser } from "../Hooks/auth/useUser";
+import ToolTip from "./ui/ToolTip";
 
 const Toggle = () => {
   const dispatch = useDispatch();
   const { unicode } = useParams();
 
   const isEdittingEnable = useSelector(
-    (state: any) => state.codeEditorSlice.isEditingEnabled
+    (state: any) => state.codeEditorSlice.isEdittingEnabled
   );
   const userIdOfMaker = useSelector(
     (state: any) => state.codeEditorSlice.userIdOfMaker
@@ -31,19 +32,24 @@ const Toggle = () => {
   const { user } = useUser();
 
   return (
-    <div className="toggle-button-cover">
-      <div id="button-3" className="button r">
-        <input
-          className="checkbox"
-          type="checkbox"
-          onChange={toggleChange}
-          checked={isEdittingEnable}
-          disabled={user?.uid !== userIdOfMaker}
-        />
-        <div className="knobs"></div>
-        <div className="layer"></div>
+    <ToolTip
+      tooltipText="Only maker can use this option"
+      isOpen={user?.uid !== userIdOfMaker}
+    >
+      <div className="toggle-button-cover">
+        <div id="button-3" className="button r">
+          <input
+            className="checkbox"
+            type="checkbox"
+            onChange={toggleChange}
+            checked={!isEdittingEnable}
+            disabled={user?.uid !== userIdOfMaker}
+          />
+          <div className="knobs"></div>
+          <div className="layer"></div>
+        </div>
       </div>
-    </div>
+    </ToolTip>
   );
 };
 
