@@ -4,7 +4,7 @@ import { NavBar } from "..";
 const Layout = () => {
   const { pathname } = useLocation();
   return (
-    <section className="h-screen w-full relative overflow-hidden  bg-slate-900 ">
+    <section className="h-screen w-full relative overflow-hidden  bg-[rgb(8,8,11)] ">
       {pathname.startsWith("/editor") && <NavBar />}
       <Outlet />
       <a

@@ -3,8 +3,10 @@ import { useUser } from "../Hooks/auth/useUser";
 import { generateUniqueCode } from "../utils/uniqueCodeGenerator";
 import { callAPI } from "../utils/callAPI";
 import { AxiosResponse } from "axios";
-import { BoxesCore } from "../Components/ui/BackGroundBoxes";
 import { Button } from "..";
+import React, { Suspense } from "react";
+
+const BoxesCore = React.lazy(() => import("../Components/ui/BackGroundBoxes"));
 
 const Home = () => {
   const navigate = useNavigate();
@@ -33,7 +35,11 @@ const Home = () => {
           <Button onclick={moveToeditor} />
         </div>
       </div>
-      <BoxesCore />
+      <Suspense
+        fallback={<div className="h-full w-full bg-[rgb(8,8,11)]"></div>}
+      >
+        <BoxesCore />
+      </Suspense>
     </section>
   );
 };

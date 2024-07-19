@@ -29,6 +29,7 @@ const Toggle = () => {
     dispatch(toggleEditing(e.target.checked));
   };
   const { user } = useUser();
+
   return (
     <div className="toggle-button-cover">
       <div id="button-3" className="button r">

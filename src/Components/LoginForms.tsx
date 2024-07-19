@@ -16,7 +16,7 @@ const validationSchema = Yup.object({
   password: Yup.string().required("Required"),
 });
 
-export const SignUp: React.FC = () => {
+export const SignUp = ({ navUrl }: { navUrl: string }) => {
   const navigate = useNavigate();
   const initialValues: SignUpValues = {
     name: "",
@@ -31,7 +31,7 @@ export const SignUp: React.FC = () => {
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     await signUp(values.email, values.password, values.name);
-    navigate("/");
+    navigate(navUrl);
     console.log(values, "up");
     setSubmitting(false);
   };
@@ -97,7 +97,7 @@ interface SignInValues {
   password: string;
 }
 
-export const SignIn: React.FC = () => {
+export const SignIn = ({ navUrl }: { navUrl: string }) => {
   const navigate = useNavigate();
   const initialValues: SignInValues = {
     email: "",
@@ -110,7 +110,7 @@ export const SignIn: React.FC = () => {
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     await signIn(values.email, values.password);
-    navigate("/");
+    navigate(navUrl);
     setSubmitting(false);
   };
 
