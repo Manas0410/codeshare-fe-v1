@@ -15,6 +15,10 @@ const LanguageSelector = loadable(
   () => import("./Components/LanguageSelector")
 );
 const Button = loadable(() => import("./Components/ui/Button"));
+const SignInwithGoogle = loadable(
+  () => import("./Components/ui/SignInwithGoogle")
+);
+const MiniLoader = loadable(() => import("./Components/ui/MiniLoader"));
 
 export {
   Home,
@@ -27,4 +31,6 @@ export {
   Toggle,
   LanguageSelector,
   Button,
+  SignInwithGoogle,
+  MiniLoader,
 };

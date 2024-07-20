@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useUser } from "../Hooks/auth/useUser";
 import { useNavigate } from "react-router-dom";
+import { SignInwithGoogle } from "..";
 
 interface SignUpValues {
   name: string;
@@ -84,6 +85,7 @@ export const SignUp = ({ navUrl }: { navUrl: string }) => {
             >
               Submit
             </button>
+            <SignInwithGoogle navUrl={navUrl} />
           </Form>
         )}
       </Formik>
@@ -147,6 +149,7 @@ export const SignIn = ({ navUrl }: { navUrl: string }) => {
             >
               Submit
             </button>
+            <SignInwithGoogle navUrl={navUrl} />
           </Form>
         )}
       </Formik>
