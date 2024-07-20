@@ -9,8 +9,8 @@ import { useUser } from "./Hooks/auth/useUser";
 import { CodeEditorPage, Home, Layout, Loader, Login } from ".";
 
 const App = () => {
-  const { user, Loading } = useUser();
-  return Loading ? (
+  const { user, loading } = useUser();
+  return loading ? (
     <Loader />
   ) : (
     <Router>
