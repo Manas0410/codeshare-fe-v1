@@ -9,7 +9,7 @@ const NavBar = () => {
         <SheetTrigger>
           <AlignJustify color="#ffffff" />
         </SheetTrigger>
-        <SheetContent className="bg-dark-2 border-0">
+        <SheetContent className="bg-dark-2 border-0" side={"left"}>
           <p className="text-white text-xl">Editting Tools</p>
           <div className="flex w-full justify-start gap-6 items-center  h-max mt-16 mb-6">
             <div className="text-white mb-5 text-xl ">Allow Editting :</div>
