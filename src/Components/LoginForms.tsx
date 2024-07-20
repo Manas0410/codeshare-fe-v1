@@ -24,16 +24,17 @@ export const SignUp = ({ navUrl }: { navUrl: string }) => {
     password: "",
   };
 
-  const { signUp } = useUser();
+  const { signUp, error } = useUser();
 
   const onSignUp = async (
     values: SignUpValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     await signUp(values.email, values.password, values.name);
-    navigate(navUrl);
-    console.log(values, "up");
     setSubmitting(false);
+    if (!error) {
+      navigate(navUrl);
+    }
   };
 
   return (
@@ -78,6 +79,7 @@ export const SignUp = ({ navUrl }: { navUrl: string }) => {
                 className="errorMessage"
               />
             </div>
+            {error && <div className="errorMessage">{error}</div>}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -97,6 +99,17 @@ interface SignInValues {
   email: string;
   password: string;
 }
+// //////////////////////////////////////////////////////////////////
+
+const SignInvalidationSchema = Yup.object({
+  email: Yup.string().email("Invalid email address").required("Required"),
+  password: Yup.string().required("Required"),
+});
+
+interface SignInValues {
+  email: string;
+  password: string;
+}
 
 export const SignIn = ({ navUrl }: { navUrl: string }) => {
   const navigate = useNavigate();
@@ -104,20 +117,26 @@ export const SignIn = ({ navUrl }: { navUrl: string }) => {
     email: "",
     password: "",
   };
-  const { signIn } = useUser();
+  const { signIn, error } = useUser();
 
   const onSignIn = async (
     values: SignInValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     await signIn(values.email, values.password);
-    navigate(navUrl);
     setSubmitting(false);
+    if (!error) {
+      navigate(navUrl);
+    }
   };
 
   return (
     <section>
-      <Formik initialValues={initialValues} onSubmit={onSignIn}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={onSignIn}
+        validationSchema={SignInvalidationSchema}
+      >
         {({ isSubmitting }) => (
           <Form className="max-w-md mx-auto p-4 bg-white shadow-md rounded">
             <div className="mb-4">
@@ -142,6 +161,7 @@ export const SignIn = ({ navUrl }: { navUrl: string }) => {
                 className="errorMessage"
               />
             </div>
+            {error && <div className="errorMessage">{error}</div>}
             <button
               type="submit"
               disabled={isSubmitting}

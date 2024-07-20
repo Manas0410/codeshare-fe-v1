@@ -13,9 +13,9 @@ import { io } from "socket.io-client";
 import { useToast } from "../../Components/ui/use-toast";
 import { ToastAction } from "../../Components/ui/toast";
 
-const BASE_API = window.location.href.startsWith("http://localhost:5173")
+const BASE_API = window.location.href.startsWith("http://localhost:517")
   ? "http://localhost:3000"
-  : "https://manascodeshare.onrender.com";
+  : "http://3.110.223.149:3000";
 
 // export const socket = io("http://3.110.223.149:3000");
 export const socket = io(BASE_API);
