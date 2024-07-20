@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Languages } from "../constants/languages";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
@@ -14,8 +14,6 @@ const LanguageSelector: React.FC = () => {
   const language = useSelector(
     (state: any) => state.codeEditorSlice.editorLanguage
   );
-
-  const [value, setValue] = useState<string | null>(null);
 
   const sendLanguageDataToServer = async (language: string) => {
     await callAPI(`/update`, "put", {
