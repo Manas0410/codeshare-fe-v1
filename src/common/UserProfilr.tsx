@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUser } from "../Hooks/auth/useUser";
+import { LogOut } from "lucide-react";
 
 const UserProfilr = () => {
   const { user, logOut } = useUser();
@@ -22,9 +23,9 @@ const UserProfilr = () => {
       {showButton && (
         <button
           onClick={() => logOut()}
-          className="absolute top-[100%] right-4 bg-slate-600 z-[1000] px-5 rounded text-white"
+          className="absolute top-[100%] right-4 bg-slate-600 z-[1000] px-5 rounded text-white flex gap-2 justify-center items-center"
         >
-          logout
+          <LogOut className="h-4 w-4" /> logout
         </button>
       )}
     </section>

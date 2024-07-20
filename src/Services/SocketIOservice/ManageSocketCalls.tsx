@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { callAPI } from "../../utils/callAPI";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import {
   setEditorLanguage,
@@ -10,6 +10,8 @@ import {
 } from "../ReduxService/Reducers/CodeDataReducer";
 import { ReactNode, useEffect } from "react";
 import { io } from "socket.io-client";
+import { useToast } from "../../Components/ui/use-toast";
+import { ToastAction } from "../../Components/ui/toast";
 
 const BASE_API = window.location.href.startsWith("http://localhost:5173")
   ? "http://localhost:3000"
@@ -19,15 +21,24 @@ const BASE_API = window.location.href.startsWith("http://localhost:5173")
 export const socket = io(BASE_API);
 
 const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
+  const { toast } = useToast();
   const dispatch = useDispatch();
   const { unicode } = useParams();
-
+  const navigate = useNavigate();
   // this block of code is to get the data from server //
   const getDataFromServer = async () => {
     const res = await callAPI(`/get?urlCode=${unicode}`, "get");
 
     if ((res as AxiosResponse)?.status !== 200) {
+      navigate("/");
       // handle error
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description:
+          "U probably have entered wrong url or your code has been expired",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
     }
     const { data } = res as AxiosResponse;
     dispatch(setUserIdOfMaker(data?.userId));
