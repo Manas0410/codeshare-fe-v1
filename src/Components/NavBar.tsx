@@ -1,13 +1,10 @@
 import { AlignJustify } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "../Components/ui/sheet";
-import { LanguageSelector, Toggle } from "..";
+import { LanguageSelector, Profile, Toggle } from "..";
 
 const NavBar = () => {
   return (
     <section className="flex justify-between h-[60px] w-full bg-dark-2 px-8 items-center">
-      <div className="">
-        <div className="name text-white">SMxShare</div>
-      </div>
       <Sheet>
         <SheetTrigger>
           <AlignJustify color="#ffffff" />
@@ -24,6 +21,7 @@ const NavBar = () => {
           </div>
         </SheetContent>
       </Sheet>
+      <Profile />
     </section>
   );
 };

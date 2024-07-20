@@ -19,6 +19,7 @@ const SignInwithGoogle = loadable(
   () => import("./Components/ui/SignInwithGoogle")
 );
 const MiniLoader = loadable(() => import("./Components/ui/MiniLoader"));
+const Profile = loadable(() => import("./common/UserProfilr"));
 
 export {
   Home,
@@ -33,4 +34,5 @@ export {
   Button,
   SignInwithGoogle,
   MiniLoader,
+  Profile,
 };
