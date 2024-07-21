@@ -1,4 +1,4 @@
-const baseUrl = "http://3.110.223.149:3000/code";
+const baseUrl = "https://manas.vidhyaskillschool.com/code";
 
 const BASE_API = window.location.href.startsWith("http://localhost:517")
   ? "http://localhost:3000/code"
