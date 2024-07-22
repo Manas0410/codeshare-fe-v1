@@ -22,15 +22,18 @@ const Toggle = () => {
       isEditable: isEditable,
       urlCode: unicode,
     });
-    socket.emit("send_message", { message: "Hello from client" });
   };
 
   const toggleChange = async (e: { target: { checked: any } }) => {
-    await sendEditEnableDataToServer(e.target.checked);
-    dispatch(toggleEditing(e.target.checked));
+    const isEditable = e.target.checked;
+    await sendEditEnableDataToServer(isEditable);
+    socket.emit("send_message", { message: "Hello from client" });
+    dispatch(toggleEditing(isEditable));
   };
+
   const { user } = useUser();
 
+  console.log("isEdittingEnable", isEdittingEnable);
   return (
     <ToolTip
       tooltipText="Only maker can use this option"
@@ -42,7 +45,7 @@ const Toggle = () => {
             className="checkbox"
             type="checkbox"
             onChange={toggleChange}
-            checked={!isEdittingEnable}
+            checked={isEdittingEnable}
             disabled={user?.uid !== userIdOfMaker}
           />
           <div className="knobs"></div>
