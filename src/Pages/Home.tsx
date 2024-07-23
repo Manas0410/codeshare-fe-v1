@@ -20,7 +20,7 @@ const Home = () => {
       urlCode: unicode,
       sharedData: "asd",
       languageName: "plaintext",
-      isEditable: false,
+      isEditable: true,
       userId: user?.uid,
     });
     if ((res as AxiosResponse)?.status === 201) {
