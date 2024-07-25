@@ -4,6 +4,7 @@ import { updateCode } from "../Services/ReduxService/Reducers/CodeDataReducer";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
+import { useUser } from "../Hooks/auth/useUser";
 
 let timer: any = null;
 
@@ -16,6 +17,12 @@ const CutomEditor = () => {
   const codeLanguage = useSelector(
     (state: any) => state.codeEditorSlice.editorLanguage
   );
+
+  const userIdOfMaker = useSelector(
+    (state: any) => state.codeEditorSlice.userIdOfMaker
+  );
+
+  const { user } = useUser();
 
   const { unicode } = useParams();
 
@@ -45,7 +52,7 @@ const CutomEditor = () => {
       value={codeVal}
       onChange={(value) => handleEditorChange(value || "")}
       options={{
-        readOnly: !isEdittingEnabled,
+        readOnly: userIdOfMaker !== user?.uid && !isEdittingEnabled,
       }}
     />
   );
