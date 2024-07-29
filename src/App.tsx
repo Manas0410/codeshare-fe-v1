@@ -7,6 +7,7 @@ import {
 import Protectedroute from "./common/Protectedroute";
 import { useUser } from "./Hooks/auth/useUser";
 import { CodeEditorPage, Home, Layout, Loader, Login } from ".";
+import Test from "./Pages/Test";
 
 const App = () => {
   const { user, loading } = useUser();
@@ -15,6 +16,7 @@ const App = () => {
   ) : (
     <Router>
       <Routes>
+        <Route path="/test" element={<Test />} />
         <Route element={<Layout />}>
           <Route
             path="/login"
