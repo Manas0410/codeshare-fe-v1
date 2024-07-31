@@ -1,5 +1,6 @@
 import { FileCode2, Plus, Settings } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { AddFileInput } from "..";
 
 type FileData = {
   [key: string]: {
@@ -40,6 +41,10 @@ const FileSelector: React.FC = () => {
   const [FileSelected, setFileSelected] = useState<string>(
     "file1fnvokndfoknvklfsnvlkfndklvn"
   );
+  const [showAddFileInput, setShowAddFileInput] = useState(false);
+
+  const openAddFileInput = useCallback(() => setShowAddFileInput(true), []);
+  const closeAddFileInput = useCallback(() => setShowAddFileInput(false), []);
 
   useEffect(() => {
     setSelectedData(filedata[FileSelected].data);
@@ -72,9 +77,17 @@ const FileSelector: React.FC = () => {
           </div>
         </div>
       ))}
-      <button className="px-3 ">
-        <Plus color="#ffffff" />
-      </button>
+      {!showAddFileInput ? (
+        <button className="px-3 " onClick={openAddFileInput}>
+          <Plus color="#ffffff" />
+        </button>
+      ) : (
+        <AddFileInput
+          data={filedata}
+          onSave={() => {}}
+          closeinput={closeAddFileInput}
+        />
+      )}
       <div>{SelectedData}</div>
     </section>
   );
