@@ -399,12 +399,13 @@ form {
   height: max-content;
   border-radius: 6px;
   font-size: 17px;
+  z-index: 100;
 }
 
 .tooltip {
   --background-tooltip: #4486e2; /* Default background color for tooltip */
   position: absolute;
-  top: -59px; /* Adjusted top position */
+  bottom: -49px; /* Adjusted top position */
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5em;
@@ -418,6 +419,7 @@ form {
   height: 30px;
   font-size: 13px;
   text-align: center;
+  z-index: 100;
 }
 
 .tooltip::before {
@@ -425,7 +427,7 @@ form {
   content: "";
   height: 0.9em;
   width: 0.9em;
-  bottom: -0.2em;
+  top: -0.2em;
   left: 50%;
   transform: translate(-50%) rotate(45deg);
   background: var(--background-tooltip);

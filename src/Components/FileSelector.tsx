@@ -1,6 +1,6 @@
 import { FileCode2, Plus, Settings } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
-import { AddFileInput } from "..";
+import { AddFileInput, FileSettingsMenu } from "..";
 
 type FileData = {
   [key: string]: {
@@ -72,9 +72,7 @@ const FileSelector: React.FC = () => {
               {item.name}
             </span>
           </div>
-          <div className="h-[16px] w-[16px]">
-            <Settings className="h-[16px] w-[16px]" />
-          </div>
+          <FileSettingsMenu />
         </div>
       ))}
       {!showAddFileInput ? (
