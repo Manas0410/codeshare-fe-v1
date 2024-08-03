@@ -5,6 +5,7 @@ import { callAPI } from "../utils/callAPI";
 import { AxiosResponse } from "axios";
 import { Button, Profile } from "..";
 import React, { Suspense, useState } from "react";
+import { encodeKey } from "../utils/HASHfilename";
 
 const BoxesCore = React.lazy(() => import("../Components/ui/BackGroundBoxes"));
 
@@ -18,16 +19,21 @@ const Home = () => {
     const unicode = generateUniqueCode(6);
     const res = await callAPI("/post", "post", {
       urlCode: unicode,
-      sharedData: "asd",
-      languageName: "plaintext",
-      isEditable: true,
+      sharedData: {
+        [encodeKey("code1.txt")]: {
+          name: "code1.txt",
+          languageName: "",
+          isEditable: false,
+          data: "",
+        },
+      },
       userId: user?.uid,
     });
+
     if ((res as AxiosResponse)?.status === 201) {
       setLoading(false);
       navigate(`/editor/${unicode}`);
     }
-    // handle api error here
   };
 
   return (

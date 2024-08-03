@@ -1,63 +1,41 @@
-import { FileCode2, Plus, Settings } from "lucide-react";
-import React, { useCallback, useEffect, useState } from "react";
+import { FileCode2, Plus } from "lucide-react";
+import React, { useCallback, useState } from "react";
 import { AddFileInput, FileSettingsMenu } from "..";
-
-type FileData = {
-  [key: string]: {
-    name: string;
-    data: string;
-  };
-};
-
-const filedata: FileData = {
-  file1fnvokndfoknvklfsnvlkfndklvn: {
-    name: "file1fnvokndfoknvklfsnvlkfndklvn",
-    data: "data1",
-  },
-  file2: {
-    name: "file2",
-    data: "data2",
-  },
-  file3: {
-    name: "file3",
-    data: "data3",
-  },
-  file4: {
-    name: "file4",
-    data: "data4",
-  },
-  file5: {
-    name: "file5",
-    data: "data5",
-  },
-  file6: {
-    name: "file6",
-    data: "data6",
-  },
-};
+import { useDispatch, useSelector } from "react-redux";
+import {
+  CodeEditorState,
+  setSelectedFile,
+} from "../Services/ReduxService/Reducers/CodeDataReducer";
 
 const FileSelector: React.FC = () => {
-  const [SelectedData, setSelectedData] = useState<string>("");
-  const [FileSelected, setFileSelected] = useState<string>(
-    "file1fnvokndfoknvklfsnvlkfndklvn"
+  const filedata = useSelector(
+    (state: { codeEditorSlice: CodeEditorState }) =>
+      state.codeEditorSlice.codeData
   );
+
+  const selectedFile = useSelector(
+    (state: { codeEditorSlice: CodeEditorState }) =>
+      state.codeEditorSlice.selectedFile
+  );
+
   const [showAddFileInput, setShowAddFileInput] = useState(false);
 
   const openAddFileInput = useCallback(() => setShowAddFileInput(true), []);
   const closeAddFileInput = useCallback(() => setShowAddFileInput(false), []);
 
-  useEffect(() => {
-    setSelectedData(filedata[FileSelected].data);
-  }, [FileSelected]);
+  const dispatch = useDispatch();
+  const onFileClick = (file: string) => {
+    dispatch(setSelectedFile(file));
+  };
 
   return (
     <section className="flex bg-black h-[40px]">
-      {Object.values(filedata).map((item) => (
+      {Object.keys(filedata).map((item) => (
         <div
-          key={item.name}
-          onClick={() => setFileSelected(item.name)}
+          key={item}
+          onClick={() => onFileClick(item)}
           className={`flex items-center w-[180px] justify-between border-r-[1px] font-poppins border-x-gray-600 text-gray-300 px-2 cursor-pointer ${
-            FileSelected === item.name &&
+            selectedFile === item &&
             "bg-slate-800 border-t-[1px] border-t-[#0a89ff] text-gray-50 "
           }`}
         >
@@ -67,14 +45,15 @@ const FileSelector: React.FC = () => {
             </div>
             <span
               className="w-[100px] text-ellipsis text-wrap overflow-hidden ..."
-              title={item.name}
+              title={item}
             >
-              {item.name}
+              {item}
             </span>
           </div>
-          <FileSettingsMenu />
+          {item === selectedFile && <FileSettingsMenu />}
         </div>
       ))}
+
       {!showAddFileInput ? (
         <button className="px-3 " onClick={openAddFileInput}>
           <Plus color="#ffffff" />
@@ -86,7 +65,6 @@ const FileSelector: React.FC = () => {
           closeinput={closeAddFileInput}
         />
       )}
-      <div>{SelectedData}</div>
     </section>
   );
 };

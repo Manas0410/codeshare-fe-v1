@@ -1,11 +1,13 @@
-import { CutomEditor } from "..";
+import { CutomEditor, FileSelector } from "..";
 import ManageSocketCalls from "../Services/SocketIOservice/ManageSocketCalls";
 
 const CodeEditorPage = () => {
   return (
     <section>
+      <FileSelector />
       <ManageSocketCalls>
-        <CutomEditor />
+        {/* <CutomEditor /> */}
+        <div></div>
       </ManageSocketCalls>
     </section>
   );

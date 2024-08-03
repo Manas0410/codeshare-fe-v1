@@ -3,10 +3,8 @@ import { callAPI } from "../../utils/callAPI";
 import { useNavigate, useParams } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import {
-  setEditorLanguage,
   setUserIdOfMaker,
-  toggleEditing,
-  updateCode,
+  updateCodeData,
 } from "../ReduxService/Reducers/CodeDataReducer";
 import { ReactNode, useEffect } from "react";
 import { io } from "socket.io-client";
@@ -27,7 +25,7 @@ const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   // this block of code is to get the data from server //
   const getDataFromServer = async () => {
-    const res = await callAPI(`/get?urlCode=${unicode}`, "get");
+    const res = await callAPI(`/get/${unicode}`, "get");
 
     if ((res as AxiosResponse)?.status !== 200) {
       navigate("/");
@@ -42,9 +40,7 @@ const ManageSocketCalls = ({ children }: { children: ReactNode }) => {
     }
     const { data } = res as AxiosResponse;
     dispatch(setUserIdOfMaker(data?.userId));
-    dispatch(updateCode(data?.sharedData));
-    dispatch(toggleEditing(data?.isEditable));
-    dispatch(setEditorLanguage(data?.languageName));
+    dispatch(updateCodeData(data?.sharedData));
   };
 
   // initial data load

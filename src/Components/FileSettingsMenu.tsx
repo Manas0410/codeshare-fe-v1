@@ -6,18 +6,18 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
-import { LanguageSelector, Toggle } from "..";
+// import { LanguageSelector, Toggle } from "..";
 
 const MenuItems = () => {
   return (
     <section className="w-[350px] h-[450px] p-4 text-white">
       <div className="flex gap-4 mt-4 items-center pb-4">
         <p className="pb-4">Allow Editting :</p>
-        <Toggle />
+        {/* <Toggle /> */}
       </div>
 
       <p className="pb-2">Select Language :</p>
-      <LanguageSelector />
+      {/* <LanguageSelector /> */}
     </section>
   );
 };

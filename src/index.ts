@@ -24,6 +24,7 @@ const AddFileInput = loadable(() => import("./Components/ui/AddFileInput"));
 const FileSettingsMenu = loadable(
   () => import("./Components/FileSettingsMenu")
 );
+const FileSelector = loadable(() => import("./Components/FileSelector"));
 
 export {
   Home,
@@ -41,4 +42,5 @@ export {
   Profile,
   AddFileInput,
   FileSettingsMenu,
+  FileSelector,
 };
