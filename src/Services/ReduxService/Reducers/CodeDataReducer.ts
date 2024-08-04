@@ -98,11 +98,24 @@ const codeEditorSlice = createSlice({
     setUserIdOfMaker: (state, action: PayloadAction<string>) => {
       state.userIdOfMaker = action.payload;
     },
+    upDateDataOfFile: (state, action: PayloadAction<string>) => {
+      const selectedFile = state.selectedFile;
+      state.codeData[selectedFile].data = action.payload;
+    },
+
+    addNewFile: (state, action: PayloadAction<FileData>) => {
+      state.codeData[action.payload.name] = action.payload;
+    },
   },
 });
 
-export const { updateCodeData, setSelectedFile, setUserIdOfMaker } =
-  codeEditorSlice.actions;
+export const {
+  updateCodeData,
+  setSelectedFile,
+  setUserIdOfMaker,
+  upDateDataOfFile,
+  addNewFile,
+} = codeEditorSlice.actions;
 export default codeEditorSlice.reducer;
 
 // Selectors to retrieve properties of the selected file

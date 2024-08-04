@@ -6,8 +6,7 @@ const CodeEditorPage = () => {
     <section>
       <FileSelector />
       <ManageSocketCalls>
-        {/* <CutomEditor /> */}
-        <div></div>
+        <CutomEditor />
       </ManageSocketCalls>
     </section>
   );
