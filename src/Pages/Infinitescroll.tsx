@@ -8,21 +8,22 @@ const Infinitescroll = () => {
   const [Offset, setOffset] = useState(0);
   const [Data, setData] = useState([]);
 
+  const callData = async () => {
+    await axios
+      .get(`https://api.escuelajs.co/api/v1/products?offset=${Offset}&limit=10`)
+      .then((res) => {
+        setData((prev) => [...prev, ...res.data]);
+      });
+  };
+
   useEffect(() => {
-    const callData = async () => {
-      await axios
-        .get(
-          `https://api.escuelajs.co/api/v1/products?offset=${Offset}&limit=10`
-        )
-        .then((res) => setData((prev) => [...prev, ...res.data]));
-    };
     callData();
   }, [Offset]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && lastRef.current) {
+        if (entries[0].isIntersecting) {
           setOffset((prev) => prev + 10);
         }
       },
@@ -33,17 +34,24 @@ const Infinitescroll = () => {
       observer.observe(lastRef.current);
     }
 
-    return () => observer.unobserve(lastRef.current);
-  }, []);
+    return () => {
+      if (lastRef.current) {
+        observer.unobserve(lastRef.current);
+      }
+    };
+  }, [Data]);
 
   return (
     <div>
-      {Data.map((item) => (
-        <div key={item.id} className="h-20">
+      {Data.map((item, index) => (
+        <div
+          key={item.id}
+          className="h-40"
+          ref={index === Data.length - 1 ? lastRef : null}
+        >
           {item.title}
         </div>
       ))}
-      <div ref={lastRef}></div>
     </div>
   );
 };

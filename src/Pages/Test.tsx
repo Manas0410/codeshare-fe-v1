@@ -1,11 +1,9 @@
-import { NavBar } from "..";
-import FileSelector from "../Components/FileSelector";
+import DraggableDiv from "../Components/ui/Draggable";
 
 const Test: React.FC = () => {
   return (
     <>
-      <NavBar />
-      <FileSelector />
+      <DraggableDiv />
     </>
   );
 };
