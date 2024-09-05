@@ -58,6 +58,8 @@ const FileSelector: React.FC = () => {
       );
     } catch (err) {
       console.log("Error adding file", err);
+    } finally {
+      setShowAddFileInput(false);
     }
   }, []);
 
