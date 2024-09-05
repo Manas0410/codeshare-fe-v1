@@ -7,7 +7,6 @@ import {
 import Protectedroute from "./common/Protectedroute";
 import { useUser } from "./Hooks/auth/useUser";
 import { CodeEditorPage, Home, Layout, Loader, Login } from ".";
-import Test from "./Pages/Test";
 import AudioRecorder from "./TemporaryAudioService.tsx/Audio";
 
 const App = () => {

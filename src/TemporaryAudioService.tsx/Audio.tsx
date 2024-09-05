@@ -23,6 +23,7 @@ const AudioRecorder: React.FC = () => {
         });
         const audioUrl = URL.createObjectURL(audioBlob);
         setAudioURL(audioUrl);
+        console.log(audioUrl);
         setIsRecording(false);
       };
 
@@ -40,7 +41,7 @@ const AudioRecorder: React.FC = () => {
   };
 
   return (
-    <div>
+    <div draggable={true} style={{ border: "1px solid red" }}>
       <button onClick={isRecording ? stopRecording : startRecording}>
         {isRecording ? "Stop Recording" : "Start Recording"}
       </button>
