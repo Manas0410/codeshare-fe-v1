@@ -1,51 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { decodeKey } from "../../../utils/HASHfilename";
 
-// const initialState = {
-//   code: {},
-//   isEdittingEnabled: true,
-//   userIdOfMaker: "",
-//   editorLanguage: "",
-//   //
-//   selectedFile: "",
-// };
-
-// const codeEditorSlice = createSlice({
-//   name: "codeEditorSlice",
-//   initialState,
-//   reducers: {
-//     updateCode: (state, action) => {
-//       state.code = action.payload;
-//     },
-//     toggleEditing: (state, action) => {
-//       state.isEdittingEnabled = action.payload;
-//     },
-//     setUserIdOfMaker: (state, action) => {
-//       state.userIdOfMaker = action.payload;
-//     },
-//     setEditorLanguage: (state, action) => {
-//       state.editorLanguage = action.payload;
-//     },
-//     //
-//     setSelectedFile: (state, action) => {
-//       state.selectedFile = action.payload;
-//     },
-//   },
-// });
-
-// export const {
-//   updateCode,
-//   toggleEditing,
-//   setUserIdOfMaker,
-//   setEditorLanguage,
-//   setSelectedFile,
-// } = codeEditorSlice.actions;
-// export default codeEditorSlice.reducer;
-
-// // functions to retrieve data
-// // export const selectEditorLanguage = (state: any) =>
-// //   state.codeEditorSlice.editorLanguage;
-
 interface FileData {
   name: string;
   languageName: string;
@@ -106,6 +61,12 @@ const codeEditorSlice = createSlice({
     addNewFile: (state, action: PayloadAction<FileData>) => {
       state.codeData[action.payload.name] = action.payload;
     },
+
+    deletefile: (state, action: PayloadAction<string>) => {
+      const { [action.payload]: deleted, ...remainingFiles } = state.codeData;
+      state.codeData = remainingFiles;
+      console.log(state.codeData);
+    },
   },
 });
 
@@ -115,6 +76,7 @@ export const {
   setUserIdOfMaker,
   upDateDataOfFile,
   addNewFile,
+  deletefile,
 } = codeEditorSlice.actions;
 export default codeEditorSlice.reducer;
 

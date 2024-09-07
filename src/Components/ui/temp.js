@@ -52,11 +52,11 @@
 // [
 // Manas Srivastava, Frontend Developer - 1st Technical Round
 
-const P = () => Promise.resolve("chotu is Pyaaaaar");
+// const P = () => Promise.resolve("chotu is Pyaaaaar");
 
-const a = async () => {
-  await P();
-  console.log("chotu is Pyaaaaar 2 only pyaaaarrrrr");
-};
+// const a = async () => {
+//   await P();
+//   console.log("chotu is Pyaaaaar 2 only pyaaaarrrrr");
+// };
 
-a();
+// a();

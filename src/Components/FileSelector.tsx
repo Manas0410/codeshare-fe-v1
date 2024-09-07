@@ -1,5 +1,5 @@
 import { FileCode2, Plus } from "lucide-react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AddFileInput, FileSettingsMenu } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,6 +17,10 @@ const FileSelector: React.FC = () => {
     (state: { codeEditorSlice: CodeEditorState }) =>
       state.codeEditorSlice.codeData
   );
+
+  // useEffect(() => {
+  //   console.log(filedata);
+  // }, [filedata]);
 
   const selectedFile = useSelector(
     (state: { codeEditorSlice: CodeEditorState }) =>

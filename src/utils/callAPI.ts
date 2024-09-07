@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const callAPI = async (
   url: string,
-  method: "get" | "post" | "put",
+  method: "get" | "post" | "put" | "delete",
   data = {}
 ) => {
   let res = {};
