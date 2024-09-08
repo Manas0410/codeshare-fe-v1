@@ -5,20 +5,31 @@ import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { useDispatch, useSelector } from "react-redux";
 import SearchableDropdown from "./ui/Dropdown";
-import { updateLanguageOfFile } from "../Services/ReduxService/Reducers/CodeDataReducer";
+import {
+  CodeEditorState,
+  getEditorLanguage,
+  updateLanguageOfFile,
+} from "../Services/ReduxService/Reducers/CodeDataReducer";
+import { encodeKey } from "../utils/HASHfilename";
 
 const LanguageSelector: React.FC = () => {
   const { unicode } = useParams();
   const dispatch = useDispatch();
 
-  const language = useSelector(
-    (state: any) => state.codeEditorSlice.editorLanguage
+  const codeLanguage = useSelector((state: any) => getEditorLanguage(state));
+
+  const selectedFile = useSelector(
+    (state: { codeEditorSlice: CodeEditorState }) =>
+      state.codeEditorSlice.selectedFile
   );
 
   const sendLanguageDataToServer = async (language: string) => {
     await callAPI(`/update`, "put", {
-      languageName: language,
       urlCode: unicode,
+      fileData: {
+        name: encodeKey(selectedFile),
+        languageName: language,
+      },
     });
     socket.emit("send_message", { message: "Hello from client" });
   };
@@ -32,7 +43,7 @@ const LanguageSelector: React.FC = () => {
     <div>
       <SearchableDropdown
         options={Languages}
-        selectedVal={language}
+        selectedVal={codeLanguage}
         handleChange={(val) => handleChange(val || "")}
       />
     </div>

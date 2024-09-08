@@ -17,6 +17,7 @@ import {
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { encodeKey } from "../utils/HASHfilename";
 import { LanguageSelector, Toggle } from "..";
+import { useUser } from "../Hooks/auth/useUser";
 
 const ChangeFileName = () => {
   return (
@@ -99,6 +100,12 @@ const MenuItems = () => {
     setDeleteConfirm(false);
   }, []);
 
+  const userIdOfMaker = useSelector(
+    (state: any) => state.codeEditorSlice.userIdOfMaker
+  );
+
+  const { user } = useUser();
+
   return (
     <section className="w-[350px] h-[450px] p-4 text-white flex flex-col justify-between">
       <div>
@@ -116,8 +123,13 @@ const MenuItems = () => {
 
         {!DeleteConfirm ? (
           <button
+            disabled={user?.uid !== userIdOfMaker}
             onClick={() => setDeleteConfirm(true)}
-            className="flex items-center gap-2 px-2 py-1 text-red-600 bg-red-500/30 backdrop-blur-lg rounded-md shadow hover:bg-red-500/50 focus:ring focus:ring-red-300 transition duration-150 ease-in-out"
+            className={`flex items-center gap-2 px-2 py-1 text-red-600 bg-red-500/30 backdrop-blur-lg rounded-md shadow hover:bg-red-500/50 focus:ring focus:ring-red-300 transition duration-150 ease-in-out ${
+              user?.uid !== userIdOfMaker
+                ? "cursor-not-allowed"
+                : "cursor-pointer"
+            }`}
           >
             <Trash2 color="#ff0000" strokeWidth={1.25} /> Delete
           </button>

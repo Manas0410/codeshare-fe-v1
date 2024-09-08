@@ -4,23 +4,35 @@ import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { useUser } from "../Hooks/auth/useUser";
 import ToolTip from "./ui/ToolTip";
-import { updateEditableStateOfFile } from "../Services/ReduxService/Reducers/CodeDataReducer";
+import {
+  CodeEditorState,
+  getIsEditable,
+  updateEditableStateOfFile,
+} from "../Services/ReduxService/Reducers/CodeDataReducer";
+import { encodeKey } from "../utils/HASHfilename";
 
 const Toggle = () => {
   const dispatch = useDispatch();
   const { unicode } = useParams();
 
-  const isEdittingEnable = useSelector(
-    (state: any) => state.codeEditorSlice.isEdittingEnabled
-  );
+  const isEdittingEnable = useSelector((state: any) => getIsEditable(state));
+
   const userIdOfMaker = useSelector(
     (state: any) => state.codeEditorSlice.userIdOfMaker
   );
 
+  const selectedFile = useSelector(
+    (state: { codeEditorSlice: CodeEditorState }) =>
+      state.codeEditorSlice.selectedFile
+  );
+
   const sendEditEnableDataToServer = async (isEditable: boolean) => {
     await callAPI(`/update`, "put", {
-      isEditable: isEditable,
       urlCode: unicode,
+      fileData: {
+        name: encodeKey(selectedFile),
+        isEditable: isEditable,
+      },
     });
   };
 
