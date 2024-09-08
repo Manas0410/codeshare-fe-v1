@@ -149,8 +149,13 @@ const FileSettingsMenu = () => {
     <NavigationMenu className="dark">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="w-max h-full p-0 mt-2">
-            <Settings className="h-[16px] w-[16px] " color="#ffffff" />
+          <NavigationMenuTrigger className="w-[30px] h-[35px] p-0 ">
+            <div
+              className="w-full h-full flex justify-center items-center bg-transparent"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Settings className="h-[16px] w-[16px] " color="#ffffff" />
+            </div>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="w-max">
             <MenuItemsMemoized />

@@ -69,7 +69,7 @@ const FileSelector: React.FC = () => {
         <div
           key={item}
           onClick={() => onFileClick(item)}
-          className={`flex items-center w-[180px] justify-between border-r-[1px] font-poppins border-x-gray-600 text-gray-300 px-2 cursor-pointer ${
+          className={`flex items-center w-[180px] justify-between border-r-[1px] font-poppins border-x-gray-600 text-gray-300 px-2 pr-0 cursor-pointer ${
             selectedFile === item &&
             "bg-slate-800 border-t-[1px] border-t-[#0a89ff] text-gray-50 "
           }`}

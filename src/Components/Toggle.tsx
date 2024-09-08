@@ -38,6 +38,7 @@ const Toggle = () => {
 
   const toggleChange = async (e: { target: { checked: any } }) => {
     const isEditable = e.target.checked;
+    console.log(isEditable);
     await sendEditEnableDataToServer(isEditable);
     socket.emit("send_message", { message: "Hello from client" });
     dispatch(updateEditableStateOfFile(isEditable));
