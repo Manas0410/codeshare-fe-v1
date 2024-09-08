@@ -56,7 +56,13 @@
 
 // const a = async () => {
 //   await P();
-//   console.log("chotu is Pyaaaaar 2 only pyaaaarrrrr");
 // };
 
 // a();
+
+// let sum = 0;
+// for (let i = 0; i < 9000000000; i++) {
+//   sum += i;
+// }
+
+// console.log(sum);

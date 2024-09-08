@@ -3,9 +3,9 @@ import { Languages } from "../constants/languages";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
-import { setEditorLanguage } from "../Services/ReduxService/Reducers/CodeDataReducer";
 import { useDispatch, useSelector } from "react-redux";
 import SearchableDropdown from "./ui/Dropdown";
+import { updateLanguageOfFile } from "../Services/ReduxService/Reducers/CodeDataReducer";
 
 const LanguageSelector: React.FC = () => {
   const { unicode } = useParams();
@@ -25,7 +25,7 @@ const LanguageSelector: React.FC = () => {
 
   const handleChange = async (value: string) => {
     await sendLanguageDataToServer(value);
-    dispatch(setEditorLanguage(value));
+    dispatch(updateLanguageOfFile(value));
   };
 
   return (

@@ -37,7 +37,6 @@ const codeEditorSlice = createSlice({
       action: PayloadAction<Record<string, FileData>>
     ) => {
       const decodedCodeData: Record<string, FileData> = {};
-      console.log(action.payload, "apl");
       for (const [encodedKey, fileData] of Object.entries(action.payload)) {
         const decodedKey = decodeKey(encodedKey);
         decodedCodeData[decodedKey] = fileData;
@@ -53,19 +52,30 @@ const codeEditorSlice = createSlice({
     setUserIdOfMaker: (state, action: PayloadAction<string>) => {
       state.userIdOfMaker = action.payload;
     },
+
     upDateDataOfFile: (state, action: PayloadAction<string>) => {
       const selectedFile = state.selectedFile;
       state.codeData[selectedFile].data = action.payload;
+    },
+
+    updateLanguageOfFile: (state, action: PayloadAction<string>) => {
+      const selectedFile = state.selectedFile;
+      state.codeData[selectedFile].languageName = action.payload;
+    },
+
+    updateEditableStateOfFile: (state, action: PayloadAction<boolean>) => {
+      const selectedFile = state.selectedFile;
+      state.codeData[selectedFile].isEditable = action.payload;
     },
 
     addNewFile: (state, action: PayloadAction<FileData>) => {
       state.codeData[action.payload.name] = action.payload;
     },
 
-    deletefile: (state, action: PayloadAction<string>) => {
-      const { [action.payload]: deleted, ...remainingFiles } = state.codeData;
+    deletefile: (state) => {
+      const { [state.selectedFile]: deleted, ...remainingFiles } =
+        state.codeData;
       state.codeData = remainingFiles;
-      console.log(state.codeData);
     },
   },
 });
@@ -77,6 +87,8 @@ export const {
   upDateDataOfFile,
   addNewFile,
   deletefile,
+  updateLanguageOfFile,
+  updateEditableStateOfFile,
 } = codeEditorSlice.actions;
 export default codeEditorSlice.reducer;
 

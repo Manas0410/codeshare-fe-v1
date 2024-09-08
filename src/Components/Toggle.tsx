@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleEditing } from "../Services/ReduxService/Reducers/CodeDataReducer";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { useUser } from "../Hooks/auth/useUser";
 import ToolTip from "./ui/ToolTip";
+import { updateEditableStateOfFile } from "../Services/ReduxService/Reducers/CodeDataReducer";
 
 const Toggle = () => {
   const dispatch = useDispatch();
@@ -28,12 +28,11 @@ const Toggle = () => {
     const isEditable = e.target.checked;
     await sendEditEnableDataToServer(isEditable);
     socket.emit("send_message", { message: "Hello from client" });
-    dispatch(toggleEditing(isEditable));
+    dispatch(updateEditableStateOfFile(isEditable));
   };
 
   const { user } = useUser();
 
-  console.log("isEdittingEnable", isEdittingEnable);
   return (
     <ToolTip
       tooltipText="Only maker can use this option"

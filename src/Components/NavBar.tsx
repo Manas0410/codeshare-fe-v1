@@ -5,7 +5,7 @@ import { LanguageSelector, Profile, Toggle } from "..";
 const NavBar = () => {
   return (
     <section className="flex justify-between h-[60px] w-full bg-dark-2 px-8 items-center">
-      <Sheet>
+      {/* <Sheet>
         <SheetTrigger>
           <AlignJustify color="#ffffff" />
         </SheetTrigger>
@@ -20,7 +20,8 @@ const NavBar = () => {
             <LanguageSelector />
           </div>
         </SheetContent>
-      </Sheet>
+      </Sheet> */}
+      <div className="text-white text-xl">SMxShare</div>
       <Profile />
     </section>
   );

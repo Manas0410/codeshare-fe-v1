@@ -9,14 +9,14 @@ import {
 import { memo, useCallback, useState } from "react";
 import { callAPI } from "../utils/callAPI";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   CodeEditorState,
   deletefile,
 } from "../Services/ReduxService/Reducers/CodeDataReducer";
 import { socket } from "../Services/SocketIOservice/ManageSocketCalls";
 import { encodeKey } from "../utils/HASHfilename";
-// import { LanguageSelector, Toggle } from "..";
+import { LanguageSelector, Toggle } from "..";
 
 const ChangeFileName = () => {
   return (
@@ -46,6 +46,7 @@ const ConfirmDeleteFile = ({
 }: {
   onCancelDelete: () => void;
 }) => {
+  const dispatch = useDispatch();
   const { unicode } = useParams();
   const selectedFile = useSelector(
     (state: { codeEditorSlice: CodeEditorState }) =>
@@ -59,8 +60,8 @@ const ConfirmDeleteFile = ({
         urlCode: unicode,
       });
       socket.emit("send_message", { message: "Hello from client" });
-      deletefile(selectedFile);
-      // onCancelDelete();
+      dispatch(deletefile());
+      onCancelDelete();
     } catch (err) {
       console.log(err);
     }
@@ -99,13 +100,15 @@ const MenuItems = () => {
   }, []);
 
   return (
-    <section className="w-[350px] h-[450px] p-4 text-white">
-      <div className="flex gap-4 mt-4 items-center pb-4">
-        <p className="pb-4">Allow Editting :</p>
-        {/* <Toggle /> */}
+    <section className="w-[350px] h-[450px] p-4 text-white flex flex-col justify-between">
+      <div>
+        <div className="flex gap-4 mt-4 items-center pb-4">
+          <p className="pb-4">Allow Editting :</p>
+          <Toggle />
+        </div>
+        <p className="pb-2">Select Language :</p>
+        <LanguageSelector />
       </div>
-      <p className="pb-2">Select Language :</p>
-      {/* <LanguageSelector /> */}
       <footer className="flex gap-2 justify-end">
         {/* <button className="flex items-center gap-2 px-2 py-1 text-blue-600 bg-blue-500/30 backdrop-blur-lg rounded-md shadow hover:bg-blue-500/50 focus:ring focus:ring-blue-300 transition duration-150 ease-in-out">
           <FolderPen color="#3780f6" strokeWidth={1.25} /> Rename
