@@ -1,4 +1,4 @@
-import { Check, FolderPen, Settings, Trash2, X } from "lucide-react";
+import { Check, Settings, Trash2, X } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,28 +19,28 @@ import { encodeKey } from "../utils/HASHfilename";
 import { LanguageSelector, Toggle } from "..";
 import { useUser } from "../Hooks/auth/useUser";
 
-const ChangeFileName = () => {
-  return (
-    <div className="p-4 bg-gray-800 rounded-md shadow-md flex items-center gap-4">
-      <span className="text-gray-300">Enter a new name for this file:</span>
-      <input
-        type="text"
-        placeholder="New File Name"
-        className="px-3 py-2 bg-gray-700 text-white rounded-md outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <div className="flex gap-2">
-        <button className="text-green-500 hover:text-green-600 transition">
-          <Check color="#3780f6" strokeWidth={1.25} />
-        </button>
-        <button className="text-red-500 hover:text-red-600 transition">
-          <X color="#ff0000" strokeWidth={1.25} />
-        </button>
-      </div>
-    </div>
-  );
-};
+// const ChangeFileName = () => {
+//   return (
+//     <div className="p-4 bg-gray-800 rounded-md shadow-md flex items-center gap-4">
+//       <span className="text-gray-300">Enter a new name for this file:</span>
+//       <input
+//         type="text"
+//         placeholder="New File Name"
+//         className="px-3 py-2 bg-gray-700 text-white rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+//       />
+//       <div className="flex gap-2">
+//         <button className="text-green-500 hover:text-green-600 transition">
+//           <Check color="#3780f6" strokeWidth={1.25} />
+//         </button>
+//         <button className="text-red-500 hover:text-red-600 transition">
+//           <X color="#ff0000" strokeWidth={1.25} />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
-const ChangeFileNameMemoized = memo(ChangeFileName);
+// const ChangeFileNameMemoized = memo(ChangeFileName);
 
 const ConfirmDeleteFile = ({
   onCancelDelete,
@@ -149,9 +149,9 @@ const FileSettingsMenu = () => {
     <NavigationMenu className="dark">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="w-[30px] h-[35px] p-0 ">
+          <NavigationMenuTrigger className="w-[30px] h-[35px] p-0 pr-1 bg-transparent">
             <div
-              className="w-full h-full flex justify-center items-center bg-transparent"
+              className="w-full h-full flex justify-center items-center  "
               onClick={(e) => e.stopPropagation()}
             >
               <Settings className="h-[16px] w-[16px] " color="#ffffff" />
