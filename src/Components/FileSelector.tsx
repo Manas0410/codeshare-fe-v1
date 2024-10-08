@@ -98,6 +98,7 @@ const FileSelector: React.FC = () => {
           data={filedata}
           onSave={addFile}
           closeinput={closeAddFileInput}
+          setShowAddFileInput={setShowAddFileInput}
         />
       )}
     </section>

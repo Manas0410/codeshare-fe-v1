@@ -22,7 +22,7 @@ const Home = () => {
       sharedData: {
         [encodeKey("code1.txt")]: {
           name: "code1.txt",
-          languageName: "",
+          languageName: "plaintext",
           isEditable: false,
           data: "",
         },

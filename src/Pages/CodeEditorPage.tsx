@@ -1,13 +1,28 @@
+import { useSelector } from "react-redux";
 import { CutomEditor, FileSelector } from "..";
 import ManageSocketCalls from "../Services/SocketIOservice/ManageSocketCalls";
+import { CodeEditorState } from "../Services/ReduxService/Reducers/CodeDataReducer";
+import DeletedFileFallBack from "../Components/ui/DeletedFileFallBack";
 
 const CodeEditorPage = () => {
+  const filedata = useSelector(
+    (state: { codeEditorSlice: CodeEditorState }) =>
+      state.codeEditorSlice.codeData
+  );
+  const selectedFile = useSelector(
+    (state: { codeEditorSlice: CodeEditorState }) =>
+      state.codeEditorSlice.selectedFile
+  );
   return (
     <section>
       <FileSelector />
-      <ManageSocketCalls>
-        <CutomEditor />
-      </ManageSocketCalls>
+      {!!filedata[selectedFile] ? (
+        <ManageSocketCalls>
+          <CutomEditor />
+        </ManageSocketCalls>
+      ) : (
+        <DeletedFileFallBack />
+      )}
     </section>
   );
 };
