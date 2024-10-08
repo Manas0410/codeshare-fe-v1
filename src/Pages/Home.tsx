@@ -20,8 +20,8 @@ const Home = () => {
     const res = await callAPI("/post", "post", {
       urlCode: unicode,
       sharedData: {
-        [encodeKey("code1.txt")]: {
-          name: "code1.txt",
+        [encodeKey("file1")]: {
+          name: "file1",
           languageName: "plaintext",
           isEditable: false,
           data: "",
