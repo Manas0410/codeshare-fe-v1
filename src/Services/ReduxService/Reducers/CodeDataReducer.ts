@@ -43,6 +43,7 @@ const codeEditorSlice = createSlice({
       }
 
       state.codeData = structuredClone(decodedCodeData);
+      state.selectedFile = Object.keys(decodedCodeData)[0];
     },
 
     setSelectedFile: (state, action: PayloadAction<string>) => {

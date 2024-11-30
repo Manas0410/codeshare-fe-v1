@@ -64,7 +64,7 @@ const FileSelector: React.FC = () => {
   }, []);
 
   return (
-    <section className="flex bg-black h-[40px]">
+    <section className="flex bg-black h-[40px] w-full ">
       {Object.keys(filedata).map((item) => (
         <div
           key={item}
@@ -89,17 +89,21 @@ const FileSelector: React.FC = () => {
         </div>
       ))}
 
-      {!showAddFileInput ? (
-        <button className="px-3 " onClick={openAddFileInput}>
-          <Plus color="#ffffff" />
-        </button>
-      ) : (
-        <AddFileInput
-          data={filedata}
-          onSave={addFile}
-          closeinput={closeAddFileInput}
-          setShowAddFileInput={setShowAddFileInput}
-        />
+      {Object.keys(filedata).length < 5 && (
+        <>
+          {!showAddFileInput ? (
+            <button className="px-3 " onClick={openAddFileInput}>
+              <Plus color="#ffffff" />
+            </button>
+          ) : (
+            <AddFileInput
+              data={filedata}
+              onSave={addFile}
+              closeinput={closeAddFileInput}
+              setShowAddFileInput={setShowAddFileInput}
+            />
+          )}
+        </>
       )}
     </section>
   );
